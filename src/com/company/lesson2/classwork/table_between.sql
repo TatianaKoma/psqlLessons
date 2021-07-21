@@ -20,7 +20,7 @@ WHERE category_id IN ( 1,2,3,4,5,7);
 
 SELECT *
 FROM customers
-WHERE country  NOT IN ('Mexico','Germany','USA','Canada');
+WHERE country NOT IN ('Mexico','Germany','USA','Canada');
 
 SELECT DISTINCT country
 FROM customers;
@@ -36,5 +36,5 @@ ORDER BY country DESC ;
 
 SELECT DISTINCT country, city
 FROM customers
-ORDER BY country DESC , city ASC ;
+ORDER BY country DESC, city ASC ;
 
