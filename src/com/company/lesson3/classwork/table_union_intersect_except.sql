@@ -1,18 +1,24 @@
-SELECT country
+SELECT
+    country
 FROM customers
 UNION
-SELECT country
+SELECT
+    country
 FROM employees;
 
-SELECT country
+SELECT
+    country
 FROM customers
 INTERSECT
-SELECT country
+SELECT
+    country
 FROM suppliers;
 
-SELECT country
+SELECT
+    country
 FROM customers
 EXCEPT
-SELECT country
+SELECT
+    country
 FROM suppliers;
 

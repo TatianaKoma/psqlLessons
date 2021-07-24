@@ -1,4 +1,7 @@
-SELECT company_name, contact_name, phone
+SELECT
+    company_name,
+    contact_name,
+    phone
 FROM customers
 WHERE country = 'USA';
 
@@ -6,7 +9,8 @@ SELECT *
 FROM products
 WHERE unit_price > 20;
 
-SELECT COUNT(*)
+SELECT
+    COUNT(*)
 FROM products
 WHERE unit_price < 20;
 

@@ -1,5 +1,5 @@
 SELECT *
 FROM book;
 
-SELECT*
+SELECT *
 FROM publisher;
