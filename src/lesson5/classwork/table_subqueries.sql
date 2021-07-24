@@ -18,5 +18,28 @@ JOIN customers AS c
     USING(country);
 
 SELECT
-    category_name,
-    SUM()
+    c.category_name,
+    SUM(p.units_in_stock)
+FROM products AS p
+JOIN categories AS c
+    USING(category_id)
+GROUP BY category_name
+ORDER BY SUM(p.units_in_stock) DESC
+LIMIT (
+         SELECT MIN(product_id) + 4
+         FROM products
+      );
+
+SELECT
+       AVG(units_in_stock)
+FROM products;
+
+SELECT product_name,
+       units_in_stock
+FROM products
+WHERE units_in_stock > (
+                         SELECT
+                             AVG(units_in_stock)
+                         FROM products
+                        )
+ORDER BY units_in_stock;
