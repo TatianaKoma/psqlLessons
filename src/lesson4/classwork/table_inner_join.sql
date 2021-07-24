@@ -19,11 +19,11 @@ LIMIT 5;
 
 SELECT
     c.category_name,
-    SUM(p.unit_price *p.units_in_stock)
+    SUM(p.unit_price * p.units_in_stock)
 FROM products AS p
 JOIN categories AS c
     ON p.category_id = c.category_id
-WHERE discontinued<>1
+WHERE discontinued <> 1
 GROUP BY c.category_name
 HAVING SUM(p.unit_price * p.units_in_stock) > 5000
 ORDER BY SUM(p.unit_price * p.units_in_stock) DESC;

@@ -1,4 +1,5 @@
-SELECT COUNT(DISTINCT country)
+SELECT
+    COUNT(DISTINCT country)
 FROM employees;
 
 SELECT
@@ -12,5 +13,6 @@ SELECT DISTINCT
     country
 FROM customers;
 
-SELECT COUNT(DISTINCT country)
+SELECT
+    COUNT(DISTINCT country)
 FROM customers;

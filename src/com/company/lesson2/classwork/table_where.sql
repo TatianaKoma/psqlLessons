@@ -9,7 +9,8 @@ SELECT *
 FROM products
 WHERE unit_price > 20;
 
-SELECT COUNT(*)
+SELECT
+    COUNT(*)
 FROM products
 WHERE unit_price < 20;
 

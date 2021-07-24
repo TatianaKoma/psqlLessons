@@ -12,7 +12,8 @@ WHERE ship_country LIKE 'U%';
 SELECT
     order_id,
     customer_id,
-    freight, ship_country
+    freight,
+    ship_country
 FROM orders
 WHERE ship_country LIKE 'N%'
 ORDER BY freight DESC
@@ -51,7 +52,7 @@ ORDER BY COUNT(*) DESC ;
 
 SELECT
     ship_country,
-    SUM (freight)
+    SUM(freight)
 FROM orders
 WHERE ship_region IS NOT NULL
 GROUP BY ship_country

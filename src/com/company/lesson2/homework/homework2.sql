@@ -19,7 +19,7 @@ WHERE units_in_stock > 30;
 -- цена которых более 30 у.е.
 SELECT MAX(units_in_stock)
 FROM products
-WHERE unit_price >30;
+WHERE unit_price > 30;
 
 -- 5. Найти среднее значение дней уходящих на доставку
 -- с даты формирования заказа в USA
