@@ -1,27 +1,27 @@
 CREATE TABLE student
 (
-    student_id serial,
-    first_name varchar,
-    last_name varchar,
-    birthday date,
-    phone varchar
+    student_id BIGSERIAL,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    birthday DATA,
+    phone VARCHAR
 );
 
 CREATE TABLE cathedra
 (
-    cathedra_id serial,
-    cathedra_name varchar,
-    dean varchar
+    cathedra_id BIGSERIAL,
+    cathedra_name VARCHAR,
+    dean VARCHAR
 );
 
 ALTER TABLE student
-ADD COLUMN middle_name varchar;
+ADD COLUMN middle_name VARCHAR;
 
 ALTER TABLE student
-ADD COLUMN rating float;
+ADD COLUMN rating FLOAT;
 
 ALTER TABLE student
-ADD COLUMN enrolled date;
+ADD COLUMN enrolled DATA;
 
 ALTER TABLE student
 DROP COLUMN middle_name;
@@ -44,8 +44,8 @@ ALTER COLUMN phone SET DATA TYPE varchar(30);
 
 CREATE TABLE faculty
 (
-    faculty_id serial,
-    faculty_name varchar
+    faculty_id BIGSERIAL,
+    faculty_name VARCHAR
 );
 
 INSERT INTO faculty (faculty_name)
@@ -55,6 +55,6 @@ VALUES ('faculty 1'),
 SELECT *
 FROM faculty;
 
-TRUNCATE TABLE faculty RESTART IDENTITY ;
+TRUNCATE TABLE faculty RESTART IDENTITY;
 
 DROP TABLE faculty;
