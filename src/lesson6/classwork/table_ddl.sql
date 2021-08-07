@@ -1,15 +1,15 @@
 CREATE TABLE student
 (
-    student_id BIGSERIAL,
+    id BIGSERIAL,
     first_name VARCHAR,
     last_name VARCHAR,
-    birthday DATA,
+    birthday DATE,
     phone VARCHAR
 );
 
 CREATE TABLE cathedra
 (
-    cathedra_id BIGSERIAL,
+    id BIGSERIAL,
     cathedra_name VARCHAR,
     dean VARCHAR
 );
@@ -21,16 +21,13 @@ ALTER TABLE student
 ADD COLUMN rating FLOAT;
 
 ALTER TABLE student
-ADD COLUMN enrolled DATA;
+ADD COLUMN enrolled DATE;
 
 ALTER TABLE student
 DROP COLUMN middle_name;
 
 ALTER TABLE cathedra
 RENAME TO chair;
-
-ALTER TABLE chair
-RENAME cathedra_id TO chair_id;
 
 ALTER TABLE chair
 RENAME cathedra_name TO chair_name;
@@ -44,7 +41,7 @@ ALTER COLUMN phone SET DATA TYPE varchar(30);
 
 CREATE TABLE faculty
 (
-    faculty_id BIGSERIAL,
+    id BIGSERIAL,
     faculty_name VARCHAR
 );
 

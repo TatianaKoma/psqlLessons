@@ -3,7 +3,7 @@
 -- phone varchar, title varchar
 CREATE TABLE teacher
 (
-    teacher_id BIGSERIAL,
+    id BIGSERIAL,
     first_name VARCHAR,
     last_name VARCHAR,
     birthday DATE,
@@ -31,15 +31,22 @@ ALTER COLUMN phone SET DATA TYPE VARCHAR(32);
 -- exam_name varchar(256), exam_date date
 CREATE TABLE exam
 (
-    exam_id BIGSERIAL,
+    id BIGSERIAL,
+    exam_name VARCHAR(256),
     exam_date DATE
 );
 
 -- 7. Вставить три любых записи с автогенерацией идентификатора
-
+INSERT INTO exam( exam_name, exam_date)
+VALUES
+( 'History', '1998-02-12'),
+( 'Math', '1998-02-16'),
+( 'Literature', '1998-02-21');
 
 -- 8. Посредством полной выборки убедиться,
 -- что данные были вставлены нормально и идентификаторы были сгенерированы с инкрементом
-
+SELECT *
+FROM exam;
 -- 9. Удалить все данные из таблицы со сбросом идентификатор в исходное
 -- состояние
+TRUNCATE TABLE exam RESTART IDENTITY ;
