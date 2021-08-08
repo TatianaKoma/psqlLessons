@@ -1,18 +1,21 @@
 ALTER TABLE passport
-ADD COLUMN registration text NOT NULL;
+ADD COLUMN registration TEXT NOT NULL;
 
 CREATE TABLE person
 (
-    person_id int PRIMARY KEY ,
-    first_name varchar (64) NOT NULL,
-    last_name varchar (64) NOT NULL
+    person_id INT PRIMARY KEY ,
+    first_name VARCHAR(64) NOT NULL,
+    last_name VARCHAR(64) NOT NULL
 );
+
+ALTER TABLE person
+RENAME person_id TO id;
 
 CREATE TABLE passport
 (
-    passport_id int PRIMARY KEY,
-    serial_number int NOT NULL,
-    fk_passport_person int REFERENCES person(person_id)
+    id INT PRIMARY KEY,
+    serial_number INT NOT NULL,
+    fk_passport_person INT REFERENCES person(id)
 );
 
 INSERT INTO person VALUES (1,'John','Snow');
