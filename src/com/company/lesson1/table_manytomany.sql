@@ -10,15 +10,15 @@ CREATE TABLE book
 
 CREATE TABLE author
 (
-    id INT PRIMARY KEY ,
+    id BIGSERIAL PRIMARY KEY ,
     full_name TEXT NOT NULL,
     rating REAL
 );
 
 CREATE TABLE book_author
 (
-    book_id INT REFERENCES book(id),
-    author_id INT REFERENCES author(id),
+    book_id BIGSERIAL REFERENCES book(id),
+    author_id BIGSERIAL REFERENCES author(id),
 
     CONSTRAINT book_author_pkey PRIMARY KEY (book_id,author_id) --composite key
 );

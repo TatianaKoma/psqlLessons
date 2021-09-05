@@ -4,7 +4,7 @@ DROP TABLE book_author;
 
 CREATE TABLE publisher
 (
-   id INT,
+   id BIGSERIAL,
    publisher_name VARCHAR(128) NOT NULL,
    address TEXT,
    CONSTRAINT PK_id PRIMARY KEY(id)
@@ -12,7 +12,7 @@ CREATE TABLE publisher
 
 CREATE TABLE book
 (
-    id INT,
+    id BIGSERIAL,
     title TEXT NOT NULL,
     isbn VARCHAR(32) NOT NULL,
     publisher_id INT,

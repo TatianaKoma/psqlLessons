@@ -5,7 +5,7 @@
 -- - даты экзамена
 CREATE TABLE exam
 (
-    id BIGSERIAL UNIQUE NOT NULL,
+    id BIGSERIAL UNIQUE,
     exam_name VARCHAR,
     exam_date DATE
 );
@@ -24,7 +24,7 @@ ADD PRIMARY KEY(id);
 -- - фамилия
 CREATE TABLE person
 (
-    id INT NOT NULL ,
+    id BIGSERIAL,
     fist_name VARCHAR(64) NOT NULL,
     last_name VARCHAR(64) NOT NULL,
 
@@ -38,7 +38,7 @@ CREATE TABLE person
 -- - ссылка на идентификатор личности (внешний ключ)
 CREATE TABLE passport
 (
-    id INT,
+    id BIGSERIAL,
     serial_number INT NOT NULL,
     registration TEXT NOT NULL,
     person_id INT NOT NULL,

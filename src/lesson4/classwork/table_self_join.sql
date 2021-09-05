@@ -1,12 +1,12 @@
 CREATE TABLE employee (
-    employee_id INT PRIMARY KEY ,
+    id BIGSERIAL PRIMARY KEY ,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NUll,
     manager_id INT,
-    FOREIGN KEY (manager_id) REFERENCES employee (employee_id)
+    FOREIGN KEY (manager_id) REFERENCES employee (id)
 );
 
-INSERT INTO employee (employee_id, first_name, last_name, manager_id)
+INSERT INTO employee (id, first_name, last_name, manager_id)
 VALUES (1, 'Windy', 'Hays', NULL),
        (2, 'Ava', 'Christensen', 1),
        (3, 'Hassan', 'Conner', 1),

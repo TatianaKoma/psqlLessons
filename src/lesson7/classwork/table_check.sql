@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS book;
 
 CREATE TABLE book
 (
-   id INT,
+   id BIGSERIAL,
    title TEXT NOT NULL,
    isbn VARCHAR(32) NOT NULL,
    publisher_id INT,

@@ -13,7 +13,7 @@ RENAME person_id TO id;
 
 CREATE TABLE passport
 (
-    id INT PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     serial_number INT NOT NULL,
     fk_passport_person INT REFERENCES person(id)
 );
