@@ -3,7 +3,7 @@ DROP TABLE  IF EXISTS author;
 
 CREATE TABLE book
 (
-    id INT PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     title TEXT NOT NULL,
     isbn TEXT NOT NULL
 );

@@ -3,7 +3,7 @@ ADD COLUMN registration TEXT NOT NULL;
 
 CREATE TABLE person
 (
-    person_id INT PRIMARY KEY ,
+    id BIGSERIAL PRIMARY KEY ,
     first_name VARCHAR(64) NOT NULL,
     last_name VARCHAR(64) NOT NULL
 );
