@@ -8,7 +8,7 @@ FOREIGN KEY(fk_publisher_id) REFERENCES publisher(publisher_id);
 DROP TABLE book;
 CREATE TABLE book
 (
-    book_id integer PRIMARY KEY ,
+    id BIGSERIAL PRIMARY KEY ,
     title text NOT NULL,
     isbn varchar(32) NOT NULL,
     fk_publisher_id integer REFERENCES publisher(publisher_id) NOT NULL

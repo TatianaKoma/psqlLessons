@@ -3,23 +3,24 @@ DROP TABLE  IF EXISTS author;
 
 CREATE TABLE book
 (
-book_id int PRIMARY KEY ,
-title text NOT NULL,
-isbn text NOT NULL
+    id BIGSERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    isbn TEXT NOT NULL
 );
 
 CREATE TABLE author
 (
-author_id int PRIMARY KEY ,
-full_name text NOT NULL,
-rating real
+    id BIGSERIAL PRIMARY KEY ,
+    full_name TEXT NOT NULL,
+    rating REAL
 );
 
 CREATE TABLE book_author
 (
-book_id int REFERENCES book(book_id),
-author_id int REFERENCES author(author_id),
-CONSTRAINT book_author_pkey PRIMARY KEY (book_id,author_id) --composite key
+    book_id BIGSERIAL REFERENCES book(id),
+    author_id BIGSERIAL REFERENCES author(id),
+
+    CONSTRAINT book_author_pkey PRIMARY KEY (book_id,author_id) --composite key
 );
 
 INSERT INTO book
