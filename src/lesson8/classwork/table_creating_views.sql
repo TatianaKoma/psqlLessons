@@ -1,6 +1,14 @@
-CREATE VIEW products_suppliers_categories AS
-SELECT product_name, quantity_per_unit, unit_price, units_in_stock, company_name,
-contact_name, phone, category_name, description
+CREATE OR REPLACE VIEW products_suppliers_categories AS
+SELECT
+product_name,
+quantity_per_unit,
+unit_price,
+units_in_stock,
+company_name,
+contact_name,
+phone,
+category_name,
+description
 FROM products
 JOIN suppliers USING(supplier_id)
 JOIN categories USING(category_id);
@@ -32,8 +40,16 @@ FROM orders
 WHERE freight > 100;
 
 CREATE OR REPLACE VIEW products_suppliers_categories AS
-SELECT product_name, quantity_per_unit, unit_price, units_in_stock,
-       company_name, contact_name, phone, country, category_name, description
+SELECT
+product_name,
+quantity_per_unit,
+unit_price,
+units_in_stock,
+company_name,
+contact_name,
+phone, country,
+category_name,
+description
 FROM products
 JOIN suppliers USING(supplier_id)
 JOIN categories USING(category_id);

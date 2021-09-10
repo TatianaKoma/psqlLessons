@@ -4,9 +4,17 @@
 --  customers и employees.
 -- Сделать select к созданному представлению, выведя все записи,
 -- где order_date больше 1го декабря 1997 года.
-CREATE VIEW orders_customers_employees AS
-SELECT order_date, required_date, shipped_date, ship_postal_code, company_name,
-    contact_name, phone, last_name, first_name, title
+CREATE OR REPLACE VIEW orders_customers_employees AS
+SELECT
+order_date,
+required_date,
+shipped_date,
+ship_postal_code,
+company_name,
+contact_name,
+phone, last_name,
+first_name,
+title
 FROM orders
 JOIN customers USING(customer_id)
 JOIN employees USING(employee_id);
@@ -27,18 +35,39 @@ WHERE order_date > '1997-12-01';
 DROP VIEW IF EXISTS orders_customers_employees;
 
 CREATE OR REPLACE VIEW orders_customers_employees AS
-SELECT order_date, required_date, shipped_date, ship_postal_code, ship_country,
-       company_name, contact_name, phone, last_name, first_name, title
+SELECT
+order_date,
+required_date,
+shipped_date,
+ship_postal_code,
+ship_country,
+company_name,
+contact_name,
+phone,
+last_name,
+first_name,
+title
 FROM orders
-         JOIN customers USING(customer_id)
-         JOIN employees USING(employee_id);
+JOIN customers USING(customer_id)
+JOIN employees USING(employee_id);
 
 ALTER VIEW orders_customers_employees RENAME TO oce_old;
 
-CREATE VIEW  orders_customers_employees AS
-SELECT order_date, required_date, shipped_date, ship_postal_code, ship_country,
-       company_name, contact_name, phone, last_name, first_name, title,
-       employees.postal_code,reports_to
+CREATE OR REPLACE VIEW  orders_customers_employees AS
+SELECT
+order_date,
+required_date,
+shipped_date,
+ship_postal_code,
+ship_country,
+company_name,
+ontact_name,
+phone, l
+ast_name,
+first_name,
+title,
+employees.postal_code,
+reports_to
 FROM orders
 JOIN customers USING(customer_id)
 JOIN employees USING(employee_id);
@@ -54,7 +83,7 @@ DROP VIEW oce_old;
 -- в которых discontinued = 1.
 -- Попробовать сделать вставку записи с полем discontinued = 1 - убедиться,
 -- что не проходит.
-CREATE VIEW active_products AS
+CREATE OR REPLACE VIEW active_products AS
 SELECT *
 FROM products
 WHERE discontinued <> 1
