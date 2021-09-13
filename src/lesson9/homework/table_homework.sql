@@ -1,7 +1,6 @@
 INSERT INTO customers(customer_id, contact_name, city, country, company_name)
-VALUES
-('AAAA','Alfred Mann', NULL, 'USA', 'fake_company'),
-('BBBB','Alfred Mann', NULL, 'Austria', 'fake_company');
+VALUES ('AAAA','Alfred Mann', NULL, 'USA', 'fake_company'),
+       ('BBBB','Alfred Mann', NULL, 'Austria', 'fake_company');
 
 -- 1.Вывести имя контакта заказчика, его город и страну,
 -- отсортировав по возрастанию по имени контакта и городу,
@@ -14,8 +13,10 @@ SELECT
 FROM customers
 ORDER BY contact_name,
 (
-     CASE WHEN city IS NULL THEN country
-     ELSE city
+     CASE
+        WHEN city IS NULL
+            THEN country
+        ELSE city
      END
 );
 
@@ -26,8 +27,11 @@ ORDER BY contact_name,
 SELECT
     product_name,
     unit_price,
-    CASE WHEN unit_price >= 100 THEN 'too expensive'
-         WHEN unit_price >= 50 AND unit_price < 100 THEN 'average'
+    CASE
+        WHEN unit_price >= 100
+            THEN 'too expensive'
+         WHEN unit_price >= 50 AND unit_price < 100
+            THEN 'average'
          ELSE'low price'
     END AS price
 FROM products

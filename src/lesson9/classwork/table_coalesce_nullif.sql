@@ -2,7 +2,7 @@
 SELECT
     order_id,
     order_date,
-       COALESCE(ship_region, 'unknown') AS ship_region
+    COALESCE(ship_region, 'unknown') AS ship_region
 FROM orders
 LIMIT 10;
 
@@ -24,18 +24,12 @@ CREATE TABLE budgets
 );
 
 INSERT INTO budgets(current_year, previous_year)
-VALUES (100000, 150000);
-INSERT INTO budgets(current_year, previous_year)
-VALUES (NULL, 150000);
-INSERT INTO budgets(current_year, previous_year)
-VALUES (0, 100000);
-INSERT INTO budgets(current_year, previous_year)
-VALUES (300000, 250000);
-INSERT INTO budgets(current_year, previous_year)
-VALUES (170000, 170000);
-INSERT INTO budgets(current_year, previous_year)
-VALUES (150000, NULL);
-
+VALUES (100000, 150000),
+       (NULL, 150000),
+       (0, 100000),
+       (300000, 250000),
+       (170000, 170000),
+       (150000, NULL);
 SELECT
     department,
     COALESCE(TO_CHAR(NULLIF(current_year, previous_year), 'FM99999999'), 'Same as last year ') as budget
