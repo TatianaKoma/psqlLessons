@@ -102,16 +102,71 @@ FROM get_salary_after_correction();
 -- - вычисляем среднее значение фрахта среди заказов по заданному методому доставки
 -- - вычисляем среднее значение между средним найденным на предыдущем шаге и скорректированным максимумом
 -- - возвращаем все заказы в которых значение фрахта меньше найденного на предыдущем шаге среднего
+CREATE OR REPLACE FUNCTION get_orders_by_shipping(ship_method INT)
+    RETURNS SETOF orders AS $$
+        DECLARE
+            average NUMERIC;
+            maximum NUMERIC;
+            middle NUMERIC;
+        BEGIN
+            SELECT MAX(freight) INTO maximum
+            FROM orders
+            WHERE ship_via = ship_method;
+            maximum = maximum - (maximum * 0.3);
+
+            SELECT AVG(freight) INTO average
+            FROM orders
+            WHERE ship_via = ship_method;
+            middle = (maximum + average) / 2;
+
+            RETURN QUERY
+            SELECT *
+            FROM orders
+            WHERE freight < middle;
+        END;
+    $$ LANGUAGE plpgsql;
+
+SELECT *
+FROM get_orders_by_shipping(1);
 
 -- 9. Написать функцию, которая принимает:
 -- уровень зарплаты, максимальную зарплату (по умолчанию 80), минимальную зарплату (по умолчанию 30),
 -- коээфициет роста зарплаты (по умолчанию 20%)
 -- Если зарплата выше минимальной, то возвращает false
--- Если зарплата ниже минимальной, то увеличивает зарплату на коэффициент роста и проверяет не станет ли зарплата
--- после повышения превышать максимальную.
+-- Если зарплата ниже минимальной, то увеличивает зарплату на коэффициент роста и проверяет не станет
+-- ли зарплата после повышения превышать максимальную.
 -- Если превысит - возвращает false, в противном случае true.
 -- Проверить реализацию, передавая следующие параметры
 -- (где c - уровень з/п, max - макс. уровень з/п, min - минимальный уровень з/п, r - коэффициент):
 -- c = 40, max = 80, min = 30, r = 0.2 - должна вернуть false
 -- c = 79, max = 81, min = 80, r = 0.2 - должна вернуть false
 -- c = 79, max = 95, min = 80, r = 0.2 - должна вернуть true
+DROP FUNCTION should_increase_salary();
+CREATE OR REPLACE FUNCTION should_increase_salary(
+    cur_salary NUMERIC,
+    max_salary NUMERIC DEFAULT 80,
+    min_salary NUMERIC DEFAULT 30,
+    increase_rate NUMERIC DEFAULT 0.2
+    ) RETURNS BOOLEAN AS $$
+        DECLARE
+            new_salary NUMERIC;
+        BEGIN
+            IF cur_salary >= max_salary OR cur_salary >= min_salary THEN
+                RETURN false;
+            END IF;
+
+            IF cur_salary < min_salary THEN
+                new_salary = cur_salary + (cur_salary * increase_rate);
+            END IF;
+
+            IF new_salary > max_salary THEN
+                RETURN false;
+            ELSE
+                RETURN true;
+            END IF;
+        END
+    $$ LANGUAGE plpgsql;
+
+SELECT should_increase_salary(40, 80, 30, 0.2);
+SELECT should_increase_salary(79, 80, 81, 0.2);
+SELECT should_increase_salary(79, 80, 90, 0.2);
