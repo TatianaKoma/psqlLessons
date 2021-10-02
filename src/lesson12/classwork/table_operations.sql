@@ -1,0 +1,19 @@
+SELECT ARRAY[1, 2, 3, 4] = ARRAY[1, 2, 3, 4];
+
+SELECT ARRAY[1, 2, 3, 4] = ARRAY[1, 2, 4, 3];
+
+SELECT ARRAY[1, 2, 4, 3] > ARRAY[1, 2, 3, 4];
+
+SELECT ARRAY[1, 2, 3, 4] @> ARRAY[1, 2];
+
+SELECT ARRAY[1, 2, 3, 4] @> ARRAY[1, 2, 5];
+
+SELECT ARRAY[1, 2] <@ ARRAY[1, 2, 5];
+
+SELECT ARRAY[1, 2, 3, 4] && ARRAY[1, 2, 5];
+
+SELECT ARRAY[1, 2, 3, 4] @> ARRAY[5];
+
+SELECT *
+FROM chess_game
+WHERE moves && ARRAY['d4'];
