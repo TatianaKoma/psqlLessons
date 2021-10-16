@@ -17,7 +17,8 @@ CREATE OR REPLACE FUNCTION calc_middle_price()
             low_price REAL;
             high_price REAL;
         BEGIN
-            SELECT AVG(unit_price) INTO avg_price
+            SELECT
+                AVG(unit_price) INTO avg_price
             FROM products;
 
             low_price = avg_price * 0.75;

@@ -33,8 +33,9 @@ SELECT get_price_boundary_by_dscontinuity();
 
 CREATE OR REPLACE FUNCTION get_price_boundaries(OUT max_price REAL, OUT min_price REAL) AS $$
     BEGIN
-        SELECT MAX(unit_price), MIN(unit_price)
-        INTO max_price, min_price
+        SELECT
+            MAX(unit_price),
+            MIN(unit_price) INTO max_price, min_price
         FROM products;
     END;
 $$ LANGUAGE plpgsql;

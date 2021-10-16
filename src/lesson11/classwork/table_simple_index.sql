@@ -5,7 +5,8 @@ CREATE TABLE perf_test(
 );
 
 INSERT INTO perf_test(id, reason, annotation)
-SELECT s.id, md5(random()::TEXT), NULL
+SELECT
+    s.id, md5(random()::TEXT), NULL
 FROM generate_series(1, 10000000) AS s(id)
 ORDER BY random();
 

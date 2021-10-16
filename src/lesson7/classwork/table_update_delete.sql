@@ -1,4 +1,5 @@
-SELECT * FROM author;
+SELECT *
+FROM author;
 
 UPDATE author
 SET full_name = 'Elias', rating = 5

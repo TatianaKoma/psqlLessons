@@ -6,15 +6,15 @@
 -- где order_date больше 1го декабря 1997 года.
 CREATE OR REPLACE VIEW orders_customers_employees AS
 SELECT
-order_date,
-required_date,
-shipped_date,
-ship_postal_code,
-company_name,
-contact_name,
-phone, last_name,
-first_name,
-title
+    order_date,
+    required_date,
+    shipped_date,
+    ship_postal_code,
+    company_name,
+    contact_name,
+    phone, last_name,
+    first_name,
+    title
 FROM orders
 JOIN customers USING(customer_id)
 JOIN employees USING(employee_id);
@@ -36,17 +36,17 @@ DROP VIEW IF EXISTS orders_customers_employees;
 
 CREATE OR REPLACE VIEW orders_customers_employees AS
 SELECT
-order_date,
-required_date,
-shipped_date,
-ship_postal_code,
-ship_country,
-company_name,
-contact_name,
-phone,
-last_name,
-first_name,
-title
+    order_date,
+    required_date,
+    shipped_date,
+    ship_postal_code,
+    ship_country,
+    company_name,
+    contact_name,
+    phone,
+    last_name,
+    first_name,
+    title
 FROM orders
 JOIN customers USING(customer_id)
 JOIN employees USING(employee_id);
@@ -55,19 +55,19 @@ ALTER VIEW orders_customers_employees RENAME TO oce_old;
 
 CREATE OR REPLACE VIEW  orders_customers_employees AS
 SELECT
-order_date,
-required_date,
-shipped_date,
-ship_postal_code,
-ship_country,
-company_name,
-ontact_name,
-phone, l
-ast_name,
-first_name,
-title,
-employees.postal_code,
-reports_to
+    order_date,
+    required_date,
+    shipped_date,
+    ship_postal_code,
+    ship_country,
+    company_name,
+    ontact_name,
+    phone, l
+    ast_name,
+    first_name,
+    title,
+    employees.postal_code,
+    reports_to
 FROM orders
 JOIN customers USING(customer_id)
 JOIN employees USING(employee_id);

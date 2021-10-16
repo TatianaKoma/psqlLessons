@@ -15,11 +15,13 @@ FROM backedup_customers;
 -- 2. Создать функцию, которая возвращает средний фрахт (freight) по всем заказам
 CREATE OR REPLACE FUNCTION get_avg_freight()
     RETURNS FLOAT8 AS $$
-        SELECT AVG(freight)
+        SELECT
+            AVG(freight)
         FROM orders;
     $$ LANGUAGE SQL;
 
-SELECT get_avg_freight() AS avg_freight;
+SELECT
+    get_avg_freight() AS avg_freight;
 
 -- 3. Написать функцию, которая принимает два целочисленных параметра,
 -- используемых как нижняя и верхняя границы для генерации случайного числа в пределах этой границы
@@ -37,14 +39,17 @@ CREATE OR REPLACE FUNCTION random_between(low INT, high INT)
             END;
     $$ LANGUAGE plpgsql;
 
-SELECT random_between(1, 3)
+SELECT
+    random_between(1, 3)
 FROM generate_series(1, 5);
 
 -- 4. Создать функцию, которая возвращает самые низкую и высокую зарплаты среди сотрудников
 -- заданного города
 CREATE OR REPLACE FUNCTION get_salary_bounds_by_city(emp_city VARCHAR, OUT max_salary NUMERIC, OUT min_salary NUMERIC)
     AS $$
-        SELECT MIN(salary), MAX(salary)
+        SELECT
+            MIN(salary),
+            MAX(salary)
         FROM employees
         WHERE city = emp_city;
     $$ LANGUAGE SQL;
@@ -109,12 +114,14 @@ CREATE OR REPLACE FUNCTION get_orders_by_shipping(ship_method INT)
             maximum NUMERIC;
             middle NUMERIC;
         BEGIN
-            SELECT MAX(freight) INTO maximum
+            SELECT
+                MAX(freight) INTO maximum
             FROM orders
             WHERE ship_via = ship_method;
             maximum = maximum - (maximum * 0.3);
 
-            SELECT AVG(freight) INTO average
+            SELECT
+                AVG(freight) INTO average
             FROM orders
             WHERE ship_via = ship_method;
             middle = (maximum + average) / 2;

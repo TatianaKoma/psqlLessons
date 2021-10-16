@@ -35,4 +35,5 @@ CREATE OR REPLACE FUNCTION get_avg_price()
         FROM products
     $$ LANGUAGE SQL;
 
-SELECT get_avg_price() AS avg_price;
+SELECT
+    get_avg_price() AS avg_price;
