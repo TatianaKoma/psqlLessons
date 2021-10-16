@@ -1,9 +1,12 @@
 SELECT *
 FROM products
 WHERE product_id = ANY(
-    SELECT product_id
+    SELECT
+        product_id
     FROM (
-            SELECT product_id, unit_price,
+            SELECT
+                product_id,
+                unit_price,
                 ROW_NUMBER() OVER(ORDER BY unit_price DESC) AS nth
             FROM products
         )sorted_prices
@@ -12,7 +15,12 @@ WHERE product_id = ANY(
 
 SELECT *
 FROM (
-        SELECT product_id, product_name, category_id, unit_price, units_in_stock,
+        SELECT
+            product_id,
+            product_name,
+            category_id,
+            unit_price,
+            units_in_stock,
         ROW_NUMBER() OVER(ORDER BY unit_price DESC) AS nth
         FROM products
          ) AS sorted_prices
@@ -22,7 +30,11 @@ ORDER BY unit_price;
 SELECT *
 FROM
 (
-    SELECT order_id, product_id, unit_price, quantity,
+    SELECT
+        order_id,
+        product_id,
+        unit_price,
+        quantity,
            RANK() OVER(PARTITION BY order_id ORDER BY (quantity) DESC ) AS rank_quant
     FROM orders
     JOIN order_details USING(order_id)

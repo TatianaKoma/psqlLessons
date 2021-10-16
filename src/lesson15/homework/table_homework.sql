@@ -7,7 +7,9 @@
 BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 DROP TABLE IF EXISTS archive_poor_customers;
 CREATE TABLE archive_poor_customers AS
-    SELECT company_name, SUM(unit_price * quantity) AS total
+    SELECT
+        company_name,
+        SUM(unit_price * quantity) AS total
     FROM orders
     JOIN order_details USING(order_id)
     JOIN customers USING(customer_id)
@@ -16,17 +18,24 @@ CREATE TABLE archive_poor_customers AS
     ORDER BY SUM(unit_price * quantity) DESC;
 
     DELETE FROM order_details
-    WHERE order_id IN (SELECT order_id
+    WHERE order_id IN (SELECT
+                            order_id
                        FROM orders
                        WHERE customer_id IN
-                             (SELECT customer_id FROM archive_poor_customers)
+                             (SELECT
+                                customer_id
+                              FROM archive_poor_customers)
                        );
 
     DELETE FROM orders
-    WHERE customer_id IN (SELECT customer_id FROM archive_poor_customers);
+    WHERE customer_id IN (SELECT
+                            customer_id
+                          FROM archive_poor_customers);
 
     DELETE FROM customers
-    WHERE customer_id IN ( SELECT customer_id FROM archive_poor_customers);
+    WHERE customer_id IN ( SELECT
+                              customer_id
+                            FROM archive_poor_customers);
 
 COMMIT;
 

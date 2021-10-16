@@ -12,8 +12,10 @@ CREATE OR REPLACE FUNCTION convert_temp_to(temperature REAL, to_celsius BOOL DEF
         END;
     $$ LANGUAGE plpgsql;
 
-SELECT convert_temp_to(80);
-SELECT convert_temp_to(26.7, false);
+SELECT
+    convert_temp_to(80);
+SELECT
+    convert_temp_to(26.7, false);
 
 CREATE OR REPLACE FUNCTION get_season(month_number INT)
     RETURNS TEXT AS $$

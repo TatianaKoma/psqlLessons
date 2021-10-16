@@ -19,7 +19,8 @@ CREATE OR REPLACE FUNCTION fix_customer_region()
         WHERE region IS NULL
     $$ LANGUAGE SQL;
 
-SELECT fix_customer_region();
+SELECT
+    fix_customer_region();
 
 CREATE OR REPLACE FUNCTION get_total_numbers_of_goods()
     RETURNS BIGINT AS $$
@@ -27,7 +28,8 @@ CREATE OR REPLACE FUNCTION get_total_numbers_of_goods()
         FROM products
     $$ LANGUAGE SQL;
 
-SELECT get_total_numbers_of_goods() AS total_goods;
+SELECT
+    get_total_numbers_of_goods() AS total_goods;
 
 CREATE OR REPLACE FUNCTION get_avg_price()
     RETURNS FLOAT8 AS $$
@@ -35,4 +37,5 @@ CREATE OR REPLACE FUNCTION get_avg_price()
         FROM products
     $$ LANGUAGE SQL;
 
-SELECT get_avg_price() AS avg_price;
+SELECT
+    get_avg_price() AS avg_price;

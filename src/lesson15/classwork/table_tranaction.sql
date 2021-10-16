@@ -7,7 +7,8 @@ WITH prod_update AS(
     RETURNING product_id
 )
 
-SELECT * INTO last_orders_on_discontinued
+SELECT *
+INTO last_orders_on_discontinued
 FROM order_details
 WHERE product_id IN (SELECT product_id FROM prod_update);
 SAVEPOINT backup;

@@ -32,10 +32,16 @@ ORDER BY manager;
 
 WITH RECURSIVE submission(sub_line, employee_id) AS
     (
-        SELECT last_name, employee_id FROM employee WHERE manager_id IS NULL
+        SELECT
+            last_name,
+            employee_id
+        FROM employee
+        WHERE manager_id IS NULL
         UNION ALL
-        SELECT sub_line || ' -> ' || e.last_name, e.employee_id
+        SELECT
+            sub_line || ' -> ' || e.last_name, e.employee_id
         FROM employee e, submission s
         WHERE e.manager_id = s.employee_id
     )
-SELECT * FROM submission;
+SELECT *
+FROM submission;
