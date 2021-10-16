@@ -6,8 +6,7 @@ CREATE OR REPLACE FUNCTION get_total_number_of_goods()
         END;
     $$ LANGUAGE plpgsql;
 
-SELECT
-    get_total_number_of_goods();
+SELECT get_total_number_of_goods();
 
 CREATE OR REPLACE FUNCTION get_max_price_from_discontinued()
     RETURNS REAL AS $$
@@ -36,8 +35,7 @@ CREATE OR REPLACE FUNCTION get_price_boundaries(OUT max_price REAL, OUT min_pric
     BEGIN
         SELECT
             MAX(unit_price),
-            MIN(unit_price)
-        INTO max_price, min_price
+            MIN(unit_price) INTO max_price, min_price
         FROM products;
     END;
 $$ LANGUAGE plpgsql;

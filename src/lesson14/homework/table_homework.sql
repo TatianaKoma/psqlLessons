@@ -10,7 +10,7 @@ FROM (
             employee_id,
                 SUM(unit_price *quantity) OVER(PARTITION BY employee_id) AS total_by_emp
          FROM orders
-                  LEFT JOIN order_details USING(order_id)
+         LEFT JOIN order_details USING(order_id)
          ) q
 ORDER BY total_by_emp DESC;
 

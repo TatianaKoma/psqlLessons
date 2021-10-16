@@ -5,8 +5,7 @@ CREATE OR REPLACE FUNCTION get_product_price_by_name(prod_name VARCHAR)
         WHERE product_name = prod_name
     $$ LANGUAGE SQL;
 
-SELECT
-    get_product_price_by_name('Chocolade') AS price;
+SELECT get_product_price_by_name('Chocolade') AS price;
 
 CREATE OR REPLACE FUNCTION get_price_bounaries(OUT max_price REAL, OUT min_price REAL) AS $$
     SELECT
@@ -15,8 +14,7 @@ CREATE OR REPLACE FUNCTION get_price_bounaries(OUT max_price REAL, OUT min_price
     FROM products
 $$ LANGUAGE SQL;
 
-SELECT
-    get_price_bounaries();
+SELECT get_price_bounaries();
 
 SELECT *
 FROM get_price_bounaries();
@@ -30,8 +28,7 @@ CREATE OR REPLACE FUNCTION get_price_boundary_by_dscontinuity
         WHERE discontinued = is_discontinued
     $$ LANGUAGE SQL;
 
-SELECT
-    get_price_boundary_by_dscontinuity(1);
+SELECT get_price_boundary_by_dscontinuity(1);
 
 SELECT *
 FROM get_price_boundary_by_dscontinuity(1);
@@ -45,8 +42,7 @@ FROM get_price_boundary_by_dscontinuity(1);
         WHERE discontinued = is_discontinued
     $$ LANGUAGE SQL;
 
- SELECT
-    get_price_boundary_by_dscontinuity();
+ SELECT get_price_boundary_by_dscontinuity();
 
 SELECT *
 FROM get_price_boundary_by_dscontinuity();

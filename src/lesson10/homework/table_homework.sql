@@ -47,7 +47,9 @@ FROM generate_series(1, 5);
 -- заданного города
 CREATE OR REPLACE FUNCTION get_salary_bounds_by_city(emp_city VARCHAR, OUT max_salary NUMERIC, OUT min_salary NUMERIC)
     AS $$
-        SELECT MIN(salary), MAX(salary)
+        SELECT
+            MIN(salary),
+            MAX(salary)
         FROM employees
         WHERE city = emp_city;
     $$ LANGUAGE SQL;
@@ -172,9 +174,6 @@ CREATE OR REPLACE FUNCTION should_increase_salary(
         END
     $$ LANGUAGE plpgsql;
 
-SELECT
-    should_increase_salary(40, 80, 30, 0.2);
-SELECT
-    should_increase_salary(79, 80, 81, 0.2);
-SELECT
-    should_increase_salary(79, 80, 90, 0.2);
+SELECT should_increase_salary(40, 80, 30, 0.2);
+SELECT should_increase_salary(79, 80, 81, 0.2);
+SELECT should_increase_salary(79, 80, 90, 0.2);

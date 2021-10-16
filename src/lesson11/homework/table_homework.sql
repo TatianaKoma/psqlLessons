@@ -69,9 +69,6 @@ CREATE OR REPLACE FUNCTION should_increase_salary(
         END;
     $$ LANGUAGE plpgsql;
 
-SELECT
-    should_increase_salary(79,10,80,0.2);
-SELECT
-    should_increase_salary(79,10,-1,0.2);
-SELECT
-    should_increase_salary(79,10,10,0.04);
+SELECT should_increase_salary(79,10,80,0.2);
+SELECT should_increase_salary(79,10,-1,0.2);
+SELECT should_increase_salary(79,10,10,0.04);
